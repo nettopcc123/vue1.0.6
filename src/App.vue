@@ -82,7 +82,7 @@ export default {
         }else{
             this.isMore01 = false;
         }
-        let marr = ['/vip','/liberty','/coupon','/login','/register','/feedback','/message','/messageshow','/favorites','/disclaimer','/fans','/follow','/profile'];
+        let marr = ['/vip','/liberty','/coupon','/login','/register','/feedback','/message','/messageshow','/favorites','/disclaimer','/fans','/follow','/profile','/newlists1','/newlists2','/newlists3','/newsMore1'];
         if(marr.indexOf(to.path) >= 0){ //用户中心 
             this.isHeard = false;
         }else{

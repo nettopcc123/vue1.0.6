@@ -1,17 +1,30 @@
 <template>
 <div id="container">
+<h2 class="uitit">热点NBA</h2>
  <swiper :options="swiperOption" ref="mySwiper">
   <swiper-slide class="swiper-slide games">
-   <img :src="require('./../components/img/banner_h03.jpg?1111')" alt="">
+   <router-link :to="{ name: 'newsMore1', params: { articid: 435}}">
+      <p>NBA最著名的几大谣言：布泽尔不是姚明克星，狼王无法摸篮板上沿</p>
+      <img :src="require('./../components/img/tyban1.jpg')" alt="">
+   </router-link>
   </swiper-slide>
   <swiper-slide class="swiper-slide games">
-   <img :src="require('./../components/img/banner_h04.jpg?1111')" alt="">
+  <router-link :to="{ name: 'newsMore1', params: { articid: 442}}">
+    <p>UFC北京赛主赛前瞻：布莱兹VS纳干诺 宋亚东李景亮出战</p>
+    <img :src="require('./../components/img/tyban2.jpg')" alt="">
+  </router-link>
   </swiper-slide>
   <swiper-slide class="swiper-slide games">
-   <img :src="require('./../components/img/banner_h05.jpg?1111')" alt="">
+  <router-link :to="{ name: 'newsMore1', params: { articid: 434}}">
+    <p>违约金2500万，巴萨考虑黄潜中场福尔纳尔斯</p>
+    <img :src="require('./../components/img/tyban3.jpg')" alt="">
+   </router-link>
   </swiper-slide>
   <swiper-slide class="swiper-slide games">
-   <img :src="require('./../components/img/banner_h06.jpg?1111')" alt="">
+    <router-link :to="{ name: 'newsMore1', params: { articid: 437}}">
+    <p>加比：如果马竞像巴萨一样踢传控，永远别想拿冠军</p>
+    <img :src="require('./../components/img/tyban4.jpg')" alt="">
+   </router-link>
   </swiper-slide>
   <div class="swiper-pagination" slot="pagination"></div>
   <!-- <div class="swiper-button-prev" slot="button-prev"></div>
@@ -20,7 +33,7 @@
  </div> 
  </template>
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
  export default {
   name: 'carrousel',
   data () {
@@ -38,10 +51,11 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
      scrollbar: '.swiper-scrollbar',
      mousewheelControl: true, //设置为true时，能使用鼠标滚轮控制slide滑动
      observeParents: true, //当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper
+ 
      pagination: {
       el: '.swiper-pagination',
       // type : 'progressbar', //分页器形状
-      clickable :true //点击分页器的指示点分页器会控制Swiper切换
+      clickable :true, //点击分页器的指示点分页器会控制Swiper切换
      },
     //  navigation: {
     //   nextEl: '.swiper-button-next',
@@ -57,10 +71,31 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
  }
 }
 </script>
-<style lang="scss" scoped>
-@import "scss/base.scss";
+<style scoped>
+.uitit{
+    display: block;
+    line-height: 0.36rem!important;
+    padding-left:0.15rem;
+    font-size: 0.18rem;
+    text-align: left;
+    background:#fff!important;
+    border-bottom:1px solid #ccc;
+    font-weight: normal;
+    margin-bottom:0.05rem;
+}
 img {
  width: 100%;
  height: auto;
+}
+.games p{
+  display: block;
+  line-height: 0.26rem;
+  padding: 0 0.1rem;
+  font-size: 0.18rem;
+  height: 0.6rem;
+
+}
+.games a{
+  color:#6b6b6b;
 }
 </style>

@@ -2,21 +2,27 @@
 <div id="container">
  <swiper :options="swiperOption" ref="mySwiper">
   <swiper-slide class="swiper-slide games">
-    <router-link :to="{ name: 'newsMore1', params: {url:'http://tiyu.baidu.com/news/detail/8ea52bb16c54cc8cc919d5b7e21468de'}}">
-      <p>泰勒-约翰逊:虽然出场少,但哈斯勒姆总会做好准备</p>
-      <img :src="require('./../components/img/b1a_1.jpg?1111')" alt="">
-    </router-link>
-  </swiper-slide>
-  <swiper-slide class="swiper-slide games">
-    <router-link :to="{ name: 'newsMore1', params: {url:'http://tiyu.baidu.com/news/detail/ab0c25c033b6a6737b7979d7ca75338b'}}">
-   <p> 英格拉姆:最后时刻想为詹姆斯达成三双,可惜没进</p>
-   <img :src="require('./../components/img/b1a_2.jpg?1111')" alt="">
+   <router-link :to="{ name: 'newsMore1', params: { articid: 450}}">
+      <p>米兰后卫：差点以为要提前退役，要尽快回报球队</p>
+      <img :src="require('./../components/img/tyban1a.jpg')" alt="">
    </router-link>
   </swiper-slide>
   <swiper-slide class="swiper-slide games">
-    <router-link :to="{ name: 'newsMore1', params: {url:'http://tiyu.baidu.com/news/detail/3a634b8a2c1f12f5884c740ce5a53b75'}}">
-   <p>斯奈德:我们第四节没有在防守端打出竞争力</p>
-   <img :src="require('./../components/img/b1a_3.jpg?1111')" alt="">
+  <router-link :to="{ name: 'newsMore1', params: { articid: 419}}">
+    <p>西甲第13轮前瞻：新故事开始，旧友也重逢</p>
+    <img :src="require('./../components/img/tyban2a.jpg')" alt="">
+  </router-link>
+  </swiper-slide>
+  <swiper-slide class="swiper-slide games">
+  <router-link :to="{ name: 'newsMore1', params: { articid: 454}}">
+    <p>罗马体育报：曼联希望在1月冬窗时引进马诺拉斯</p>
+    <img :src="require('./../components/img/tyban3a.jpg')" alt="">
+   </router-link>
+  </swiper-slide>
+  <swiper-slide class="swiper-slide games">
+    <router-link :to="{ name: 'newsMore1', params: { articid: 752}}">
+    <p>四连胜终结！皇马0-3埃瓦尔，索拉里上任首败</p>
+    <img :src="require('./../components/img/tyban4a.jpg')" alt="">
    </router-link>
   </swiper-slide>
   <div class="swiper-pagination" slot="pagination"></div>
@@ -26,7 +32,7 @@
  </div> 
  </template>
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
  export default {
   name: 'carrousel',
   data () {
@@ -44,10 +50,11 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
      scrollbar: '.swiper-scrollbar',
      mousewheelControl: true, //设置为true时，能使用鼠标滚轮控制slide滑动
      observeParents: true, //当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper
+ 
      pagination: {
       el: '.swiper-pagination',
       // type : 'progressbar', //分页器形状
-      clickable :true //点击分页器的指示点分页器会控制Swiper切换
+      clickable :true, //点击分页器的指示点分页器会控制Swiper切换
      },
     //  navigation: {
     //   nextEl: '.swiper-button-next',
@@ -63,19 +70,43 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
  }
 }
 </script>
-<style lang="scss" scoped>
-@import "scss/base.scss";
+<style scoped>
+.uitit{
+    display: block;
+    line-height: 0.36rem!important;
+    padding-left:0.15rem;
+    font-size: 0.18rem;
+    text-align: left;
+    background:#fff!important;
+    border-bottom:1px solid #ccc;
+    font-weight: normal;
+    margin-bottom:0.05rem;
+}
 img {
  width: 100%;
  height: auto;
 }
-
+.games{
+  position: relative;
+}
 .games p{
-    position: absolute;
-    bottom:10px;
-    left:10px
+  display: block;
+  line-height: 0.16rem;
+  padding: 0 0.1rem;
+  font-size: 0.12rem;
+  position: absolute;
+  left:10px;
+  bottom:10px;
+  color:#fff;
+  width:75%;
 }
 .games a{
-    color: #fff;
+  color:#6b6b6b;
+}
+.swiper-pagination{
+  text-align: right;
+}
+..swiper-pagination-bullet-active{
+  color:#1b1b1b!important;
 }
 </style>

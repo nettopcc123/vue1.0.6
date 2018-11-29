@@ -2,12 +2,12 @@
 <div class="marquee">
 
       <div class="marquee_title">
-                 <span>竞彩新闻</span>
+                 <span>天天收米新闻</span>
       </div>
         <div class="marquee_box">
                 <ul class="marquee_list" :class="{marquee_top:animate}">
                       <li v-for="(item,index) in marqueeList">
-                        <router-link :to="{ name: 'newsMore1', params: { url: item.url}}"> 
+                        <router-link :to="{ name: 'newsMore1', params: { articid: item.uid}}"> 
                           {{item.name}}
                         </router-link>
                         </li>
@@ -23,23 +23,23 @@ export default {
 
       marqueeList: [
         {
-          name: "苏宁下赛季主场球衣曝光,江苏球迷喜欢这款吗?",
-          url: "http://tiyu.baidu.com/news/detail/06d3e666f7b5eff99d107bc50081bee0"
+          name: "卡恩担任拜仁高层？鲁梅尼格：不清楚卡恩的想法",
+          uid: 465
         },
 
         {
-          name: "NBA:休斯顿火箭 VS 金州勇士",
-          url: "http://tiyu.baidu.com/news/detail/4b6c5d590da42b29d80f70dcd3588b0b"
+          name: "米兰21岁准新援已完婚，漂亮妻子是营养师",
+          uid: 427
         },
 
         {
-          name: "苏珊娜-迪内奇:英超最有权势的女人",
-          url: "http://tiyu.baidu.com/news/detail/5c5b01756c5f3c407a31335522313b02"
+          name: "贵州恒丰暗示冲超？一张图可以看出美女老板文筱婷从未放弃足球",
+          uid: 431
         },
 
         {
-          name: "替伤员,米兰要租借迪亚瓦拉",
-          url: "http://tiyu.baidu.com/news/detail/62606680489955196a03cc437ab834b1"
+          name: "诺克斯：生涯开局不顺，但要保持好心态",
+          uid: 464
         }
       ]
     };

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <!-- <vue-marquee></vue-marquee> -->
-        <div class="iftop05">
-        <iframe ref="iframe" id="bdIframe" :src="bdTokenUrl" frameborder="0" scrolling="no" width="100%" height="2500px" ></iframe>
-        </div>
+        <vue-banner01a></vue-banner01a>
+        <vue-marquee></vue-marquee>
+        <vue-newlists8></vue-newlists8>
     </div>
 </template>
-
 <script>
     import marquee from './../components/marquee01';
+    import newlists8 from './../components/newlists8';
+    import banner01a from './../components/banner01_a';
     export default {
         data() {
             return {
@@ -22,17 +22,12 @@
         //     });
         // },
         mounted(){
-            /**
-             * iframe-宽高自适应显示   
-            */
-            const oIframe = document.getElementById('bdIframe');
-            const deviceWidth = document.documentElement.clientWidth;
-            const deviceHeight = document.documentElement.clientHeight;
-            oIframe.style.width =  '100%'; //数字是页面布局宽度差值
-            oIframe.style.height = '2500px'; //数字是页面布局高度差
+
         },
         components: {
-         'vue-marquee':marquee
+         'vue-marquee':marquee,
+         'vue-newlists8':newlists8,
+         'vue-banner01a':banner01a,
         },
     }
 </script>

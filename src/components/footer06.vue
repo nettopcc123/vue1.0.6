@@ -8,7 +8,7 @@
                 </router-link>
              </li>
             <li>
-                <router-link :to="{ name: 'framekj'}" v-bind:class="{ active: isNews }">
+                <router-link :to="{ name: 'news'}" v-bind:class="{ active: isNews }">
                     <i class="iconfont icon-news01"></i>
                    <p>新闻</p>
                 </router-link>

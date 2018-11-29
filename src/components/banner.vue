@@ -1,26 +1,26 @@
 <template>
-<div id="container">
- <swiper :options="swiperOption" ref="mySwiper">
-  <swiper-slide class="swiper-slide games">
-    <router-link :to="{ name: 'newsMore1', params: { url: url.new01}}">
-   <img :src="require('./../components/img/004.jpg?1111')" alt="">
-   </router-link>
-  </swiper-slide>
-  <swiper-slide class="swiper-slide games">
-   <router-link :to="{ name: 'newsMore1', params: { url: url.new02}}">
-     <img :src="require('./../components/img/005.jpg?1111')" alt="">
-   </router-link>
-  </swiper-slide>
+  <div id="container">
+  <swiper :options="swiperOption" ref="mySwiper">
     <swiper-slide class="swiper-slide games">
-    <router-link :to="{ name: 'newsMore1', params: { url: url.new03}}">
-     <img :src="require('./../components/img/006.jpg?1111')" alt="">
+    <router-link :to="{ name: 'newsMore1', params: { url: url.new01}}">
+      <img :src="require('./../components/img/004.jpg?1111')" alt="">
     </router-link>
-  </swiper-slide>
-  <div class="swiper-pagination" slot="pagination"></div>
-  <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-  <div class="swiper-button-next" slot="button-next"></div> -->
- </swiper>   
- </div> 
+    </swiper-slide>
+    <swiper-slide class="swiper-slide games">
+    <router-link :to="{ name: 'newsMore1', params: { url: url.new02}}">
+      <img :src="require('./../components/img/005.jpg?1111')" alt="">
+    </router-link>
+    </swiper-slide>
+      <swiper-slide class="swiper-slide games">
+      <router-link :to="{ name: 'newsMore1', params: { url: url.new03}}">
+      <img :src="require('./../components/img/006.jpg?1111')" alt="">
+      </router-link>
+    </swiper-slide>
+    <div class="swiper-pagination" slot="pagination"></div>
+    <!-- <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div> -->
+  </swiper>   
+  </div> 
  </template>
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper';

@@ -1,13 +1,11 @@
 
 <template>
   <div class="newlists" id="newlists">
-    <h2 class="itit">极速新闻 <span></span></h2>
    <ul class="smeu">
-       <li><router-link :to="{ name: 'newlists1'}">热点新闻</router-link></li>
-       <li><router-link :to="{ name: 'newlists2'}">竞技新闻</router-link></li>
-       <li><router-link :to="{ name: 'newlists3'}">数字新闻</router-link></li>
+       <li><router-link :to="{ name: 'newlists1'}">热点NBA</router-link></li>
+       <li><router-link :to="{ name: 'newlists2'}">体育新闻</router-link></li>
+       <li><router-link :to="{ name: 'newlists3'}">酷爱汽车</router-link></li>
     </ul>
-    <vue-banner01></vue-banner01>
     <router-view></router-view>
         <div class="infinite-scroll" v-show="loading">
       <svg class="loader-circular" viewBox="25 25 50 50">
@@ -112,15 +110,15 @@ export default {
 }
 .smeu li a{
     color:#ababab;
-    border-bottom:0.01rem solid #f9f9f9;
+    border-bottom:0.01rem solid #dadada;
     display: block;
     clear:both;
     overflow: hidden;
     font-size: 0.14rem;
 }
 .smeu .router-link-active{
-    color:$bgColor;
-    border-bottom:0.01rem solid $bgColor;
+    color: #ff6816;
+    border-bottom: 0.01rem solid #ff6816;
 }
 .vrw {
     width: 100%;

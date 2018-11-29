@@ -1,14 +1,15 @@
 
-
 <template>
   <div class="newlists" id="newlists">
+        <vue-newban1></vue-newban1>
+        <vue-banner01></vue-banner01>
         <ul class="nlist">
-            <li v-for="(value, key) in newList" v-if="value.ListImgUrl == '' ? value.ListImgUrl = noimg : value.ListImgUrl">
-                <router-link :to="{ name: 'newsMore1', params: { articid: value.ArticleId , page: num}}">
-                <span class="nimg"><img v-bind:src="value.ListImgUrl" ></span>
+            <li v-for="(value, key) in newList">
+                <router-link :to="{ name: 'newsMore1', params: { articid: value.Id , page: num, content: value.Content}}">
+                <span class="nimg"><img :src="require('./../components/img/ban/h/' + value.Image +'.jpg')"></span>
                 <span class="newsCtn">
-                    <h2 class="ntit">{{ value.A_Title | filter | restr }}</h2>
-                    <p class="ntb"><span class="ntime">{{ value.CreateTimeString }}</span><span class="nname"> 竞彩蓝球</span></p>
+                    <h2 class="ntit">{{ value.Title | filter | restr }}</h2>
+                    <p class="ntb"><span class="nname">消息来源：{{ value.Source }} </span></p>
                     <i class="mark2">{{ value.username }}</i>
                 </span>
                 </router-link>
@@ -22,8 +23,9 @@ import axios from 'axios';
 import banner from './../components/banner';
 import newlists from './../components/newlists';
 import { setTimeout } from 'timers';
-import $ from 'jquery'
-
+import $ from 'jquery';
+import banner01 from './../components/banner01';
+import newban1 from './../components/new_h01';
 
 export default {
   name: 'user',
@@ -35,7 +37,7 @@ export default {
       num:0,
       tips:'努力加载中...',
       url1: '',
-      noimg: require('../assets/noimg.jpg')
+      noimg: require('../assets/noimg.jpg'),
     }
   },
   created: function(){
@@ -52,17 +54,24 @@ export default {
   filters:{
     filter:function(value){
         if (!value) return '';
-        if (value.length > 40) {
-          return value.slice(0,40) + '...';
+        if (value.length > 20) {
+          return value.slice(0,20) + '...';
         }
         return value;
     },
     restr:function(value){
       if (!value) return '';
       if (value.length > 2) {
-          return value.replace(/天天彩/, "极速时时彩彩票");
+          return value.replace(/天天彩/, "双色球走势图预判专家");
       }
       return value;
+    },
+    redata:function(str){
+       var date =  new Date(str * 1000 );
+       var y = 1900+date.getYear();
+       var m = "0"+(date.getMonth()+1);
+       var d = "0"+date.getDate();
+       return y+"年"+m.substring(m.length-2,m.length)+"月"+d.substring(d.length-2,d.length) + '日';
     }
   },
   computed:{
@@ -72,7 +81,9 @@ export default {
   },
   components: {
     'vue-banner':banner,
-    'vue-newlists':newlists
+    'vue-newlists':newlists,
+    'vue-banner01':banner01,
+    'vue-newban1':newban1
   },
   methods:{
       isalertshow() {
@@ -94,31 +105,35 @@ export default {
       newVue:function(num){
         axios.interceptors.request.use(config => {  
           this.isloadshow();      
-             console.log('1');
+             console.log('1')
             return config;
           }, function (error) {
             // 对请求错误做些什么
-            console.log('2')
+            console.log('2');
+
+            
             return Promise.reject(error);
           });
 
         // 添加响应拦截器
         axios.interceptors.response.use(response => {
             // 对响应数据做点什么
-            console.log('a3');
+            console.log('a3')
             this.isloadhid();  
            // this.$store.commit('isloadhid');
             return response;
           }, function (error) {
-            console.log('4');
+            console.log('4')
             // 对响应错误做点什么
             return Promise.reject(error);
           });
-            axios.get('https://ttcapi2.ttc178.com/api/sitemsg/getariclelist?c=1&v=1.0&t=1540456681&tk=&p=main&pageindex=' + num + '&category=HOT&s=cdfdd0026cdb71af5810e030ed05ea43')  /// http://www.hd.me/data.php?callback=dosomething    static/news.json?num  static/news.json  http://misc.opencai.net/consts/lotts.json   /static/news.json
+            axios.get('http://154.48.238.35:8085/UserService.svc/NewsList?newstype=体育&pageindex=' + num + '&pagesize=10')  /// http://www.hd.me/data.php?callback=dosomething    static/news.json?num  static/news.json  http://misc.opencai.net/consts/lotts.json   /static/news.json
             .then(res => {
-              res.data.models.forEach(v => {
+              console.log(res)
+              res.data.d.Data.forEach(v => {
                 this.newList.push(v);
               });
+              
               if( num >= 3){
                 this.tips = '加载完成';
                 return;
@@ -130,7 +145,7 @@ export default {
             });
         },
         scrollBottom:function(){
-          if( (($('#vrw').scrollTop() + (window.screen.height)) >  $('#newlists').height()) && this.REQUIRE == true && this.num <= 4 ){
+          if( (($('#vrw').scrollTop() + (window.screen.height)) >=  ($('#newlists').height()  - 10 )) && this.REQUIRE == true && this.num <= 4 ){
               this.REQUIRE = false;
               this.loading = true;
               this.tips = '正在加载中';
@@ -148,6 +163,17 @@ export default {
 
 <style lang="scss" scoped>
 @import "scss/base.scss";
+.vrw{
+    height: 100%;
+}
+.nimg{
+  width: 35%;
+  float:right;
+}
+.newsCtn{
+  width:62%;
+  float:left;
+}
 .nlist{
   display:block;
   text-align: center;
@@ -159,17 +185,20 @@ export default {
   text-align: left;
   font-size: 0.16rem;
   color:#5b5b5b;
-  border-bottom:1px dotted #ccc
+  border-bottom:1px dotted #ccc;
+  padding:0.05rem 0.1rem;
 }
 .nlist li a{
   font-size: 0.16rem;
   color:#5b5b5b
 }
 .ntit{
-  font-size: 0.14rem;
-  color:#303030;
+  font-size: 0.16rem;
+  color:#2a2a2a;
   font-weight: normal;
-  height: 0.3rem;
+  height: 0.5rem;
+  overflow: hidden;
+  line-height: 0.28rem;
 }
 .infinite-scroll{
   width: 0.5rem;
@@ -177,19 +206,15 @@ export default {
   margin:0 auto;
 }
 .nimg img{
-  width: 1rem;
-  height:0.7rem;
+  width: 113rem;
+  height:0.75rem;
 }
 .ntime{
     color: #b5b5b5;
-    width: 50%;
     text-align: left;
-    float:right;
 }
 .nname{
-    width: 50%;
-    color: #de4c3a;
-    float:right;
+    color: #b5b5b5;
 }
 .ntb{
     display: block;
@@ -197,6 +222,8 @@ export default {
     overflow: hidden;
     margin-top:0.08rem;
 }
-
-
+.fmt40{
+  margin-top:0.5rem;
+}
 </style>
+
